@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --color-bg:         #e6e0ce;
+  --color-surface:    #ffffff;
+  --color-border:     rgba(0, 0, 0, 0.08);
+  --color-border-md:  rgba(0, 0, 0, 0.14);
+ 
+  --color-text-primary:   #1a1a1a;
+  --color-text-secondary: #6b6b6b;
+  --color-text-tertiary:  #aaaaaa;
+ 
+  --color-income:       #1d9e75;
+  --color-income-bg:    #e1f5ee;
+  --color-income-text:  #085041;
+ 
+  --color-expense:      #d85a30;
+  --color-expense-bg:   #faece7;
+  --color-expense-text: #712b13;
+ 
+  --color-balance-pos:  #1d9e75;
+  --color-balance-neg:  #d85a30;
+ 
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+ 
+  --transition: 0.15s ease;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+  border-bottom: 1.5px solid var(--color-border);
+  margin-bottom: 24px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  color: var(--color-text-primary);
+}
+
+.logo-accent {
+  color: var(--color-income);
+}
+
+.logo-tagline {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+.month-select {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-md);
+  border-radius: var(--radius-xl);
+  padding: 6px 12px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.month-select:hover {
+  border-color: var(--color-border-md);
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 200px;
+  align-items: start;
+}
+
+.left-col {
+  position: sticky;
+  top: 20px;
+}
+
+.right-col {
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+ 
+/* ── Summary section ─────────────────────────────────────── */
+.section-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+ 
+/* Each card is created by SummaryCards.js with class .summary-card */
+.summary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+}
+ 
+.summary-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+ 
+.summary-amount {
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.summary-amount.positive { color: var(--color-balance-pos); }
+.summary-amount.negative { color: var(--color-balance-neg); }
+.summary-amount.income   { color: var(--color-income); }
+.summary-amount.expense  { color: var(--color-expense); }
+ 
+.summary-sub {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 4px;
+}
+ 
+/* ── Form section ────────────────────────────────────────── */
+.section-form {}
+ 
+.form-group {
+  margin-bottom: 12px;
+}
+ 
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+ 
+.form-input,
+.form-select {
+  width: 100%;
+  height: 38px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-md);
+  border-radius: var(--radius-md);
+  padding: 0 12px;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  appearance: none;
+}
+ 
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--color-income);
+  background: #fff;
+}
+ 
+.form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+ 
+/* Type toggle (Income / Expense buttons) */
+.type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+ 
+.type-btn {
+  height: 38px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-md);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+ 
+.type-btn:hover {
+  border-color: var(--color-border-md);
+  background: #fff;
+}
+ 
+.type-btn.active-income {
+  background: var(--color-income-bg);
+  color: var(--color-income-text);
+  border-color: var(--color-income);
+}
+ 
+.type-btn.active-expense {
+  background: var(--color-expense-bg);
+  color: var(--color-expense-text);
+  border-color: var(--color-expense);
+}
+ 
+/* Error message */
+.form-error {
+  font-size: 12px;
+  color: var(--color-expense);
+  margin-bottom: 8px;
+  min-height: 16px;
+}
+ 
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  height: 42px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--color-text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: opacity var(--transition), transform var(--transition);
+  margin-top: 4px;
+}
+ 
+.submit-btn:hover  { opacity: 0.85; }
+.submit-btn:active { transform: scale(0.98); }
+ 
+/* ── Breakdown section ───────────────────────────────────── */
+.section-breakdown {}
+ 
+.breakdown-row {
+  margin-bottom: 12px;
+}
+ 
+.breakdown-row:last-child {
+  margin-bottom: 0;
+}
+ 
+.breakdown-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+ 
+.breakdown-name {
+  font-size: 13px;
+  color: var(--color-text-primary);
+}
+ 
+.breakdown-amount {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+ 
+.breakdown-track {
+  height: 5px;
+  background: var(--color-bg);
+  border-radius: 3px;
+  overflow: hidden;
+}
+ 
+.breakdown-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+ 
+/* ── Filter bar ──────────────────────────────────────────── */
+.section-filter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+ 
+.filter-btn {
+  padding: 6px 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border-md);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+ 
+.filter-btn:hover {
+  background: var(--color-surface);
+}
+ 
+.filter-btn.active {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  border-color: var(--color-border-md);
+}
+ 
+/* ── Transaction list ────────────────────────────────────── */
+.section-list {}
+ 
+.tx-list {
+  list-style: none;
+}
+ 
+/* Each item created by TransactionItem.js */
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition);
+  cursor: default;
+}
+ 
+.tx-item:hover {
+  background: var(--color-bg);
+}
+ 
+.tx-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+ 
+.tx-indicator.income  { background: var(--color-income); }
+.tx-indicator.expense { background: var(--color-expense); }
+ 
+.tx-body {
+  flex: 1;
+  min-width: 0;
+}
+ 
+.tx-name {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.tx-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+ 
+.tx-date {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+ 
+.tx-category {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 20px;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+ 
+.tx-amount {
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+ 
+.tx-amount.income  { color: var(--color-income); }
+.tx-amount.expense { color: var(--color-expense); }
+ 
+.tx-delete {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-family: var(--font-body);
+  color: var(--color-text-tertiary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+ 
+.tx-item:hover .tx-delete {
+  opacity: 1;
+}
+ 
+.tx-delete:hover {
+  background: var(--color-expense-bg);
+  color: var(--color-expense);
+  border-color: var(--color-expense);
+}
+ 
+/* ── Empty state ─────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+ 
+.empty-state strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}

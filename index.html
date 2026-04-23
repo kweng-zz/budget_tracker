@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyBudget - Budget Tracker</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  
+    <div class="app-wrapper">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <span class="logo-text">My <span class="logo-accent">Budget</span></span>
+          <span class="logo-tagline">personal finance tracker</span>
+        </div>
+        <div class="topbar-right">
+          <select id="month-select" class="month-select">
+            <option value="all">All Time</option>
+          </select>
+        </div>
+      </header>
+
+      <main class="main-layout">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+          <section id="summary" class="section-summary"></section>
+          <section id="form" class="section-form"></section>
+          <section id="breakdown" class="section-breakdown"></section>
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+         <div class="right-col">
+          <div id="filter" class="section-filter"></div>
+          <section id="transaction-list" class="section-list"></section>
+         </div>
+      </main>
+    </div>
+
+
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
